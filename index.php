@@ -4,6 +4,7 @@
 *  Date: 08/29/2014
 *  This page defines the user object and creates the login and logout sessions. 
 */
+
 session_start();
 include_once 'include/functions.php';
 $user = new User();
