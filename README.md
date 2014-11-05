@@ -1,7 +1,7 @@
 MMA
 ===
 =================
-__Name:__MMA, Inc.
+__Name:__ MMA, Inc.
 
 __Type:__ Commerce Web Portal
 
