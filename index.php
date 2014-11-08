@@ -30,9 +30,13 @@ $registry->set('db', $db);
 
 // Store
 if (isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS'] == '1'))) {
-	$store_query = $db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`ssl`, 'www.', '') = '" . $db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
+	$store_query = $db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`ssl`, 'www.', '') = '" .
+	$db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']),
+	'/.\\') . '/') . "'");
 } else {
-	$store_query = $db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`url`, 'www.', '') = '" . $db->escape('http://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
+	$store_query = $db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`url`, 'www.', '') = '" .
+	$db->escape('http://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']),
+	'/.\\') . '/') . "'");
 }
 
 if ($store_query->num_rows) {
@@ -42,7 +46,8 @@ if ($store_query->num_rows) {
 }
 
 // Settings
-$query = $db->query("SELECT * FROM `" . DB_PREFIX . "setting` WHERE store_id = '0' OR store_id = '" . (int)$config->get('config_store_id') . "' ORDER BY store_id ASC");
+$query = $db->query("SELECT * FROM `" . DB_PREFIX . "setting` WHERE store_id = '0' OR store_id = '" .
+(int)$config->get('config_store_id') . "' ORDER BY store_id ASC");
 
 foreach ($query->rows as $result) {
 	if (!$result['serialized']) {
@@ -58,7 +63,8 @@ if (!$store_query->num_rows) {
 }
 
 // Url
-$url = new Url($config->get('config_url'), $config->get('config_secure') ? $config->get('config_ssl') : $config->get('config_url'));
+$url = new Url($config->get('config_url'), $config->get('config_secure') ? $config->get('config_ssl') :
+	$config->get('config_url'));
 $registry->set('url', $url);
 
 // Log
@@ -91,7 +97,8 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	}
 
 	if ($config->get('config_error_display')) {
-		echo '<b>' . $error . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' . $errline . '</b>';
+		echo '<b>' . $error . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' .
+		$errline . '</b>';
 	}
 
 	if ($config->get('config_error_log')) {
@@ -151,9 +158,11 @@ if (isset($request->server['HTTP_ACCEPT_LANGUAGE']) && $request->server['HTTP_AC
 	}
 }
 
-if (isset($session->data['language']) && array_key_exists($session->data['language'], $languages) && $languages[$session->data['language']]['status']) {
+if (isset($session->data['language']) && array_key_exists($session->data['language'], $languages) &&
+   $languages[$session->data['language']]['status']) {
 	$code = $session->data['language'];
-} elseif (isset($request->cookie['language']) && array_key_exists($request->cookie['language'], $languages) && $languages[$request->cookie['language']]['status']) {
+} elseif (isset($request->cookie['language']) && array_key_exists($request->cookie['language'], $languages) 
+   && $languages[$request->cookie['language']]['status']) {
 	$code = $request->cookie['language'];
 } elseif ($detect) {
 	$code = $detect;
@@ -198,7 +207,8 @@ if ($customer->isLogged()) {
 if (isset($request->get['tracking'])) {
 	setcookie('tracking', $request->get['tracking'], time() + 3600 * 24 * 1000, '/');
 
-	$db->query("UPDATE `" . DB_PREFIX . "marketing` SET clicks = (clicks + 1) WHERE code = '" . $db->escape($request->get['tracking']) . "'");
+	$db->query("UPDATE `" . DB_PREFIX . "marketing` SET clicks = (clicks + 1) WHERE code = '" .
+	$db->escape($request->get['tracking']) . "'");
 }
 
 // Tax
