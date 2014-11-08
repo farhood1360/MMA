@@ -1,9 +1,9 @@
 MMA
 ===
 =================
-__Name:__ MMA, Inc.
+__Name:__ Medical Site.
 
-__Type:__ Commerce Web Portal
+__Type:__ E-Commerce Web Application
 
 __Author:__ Farhood Rashidi
 
