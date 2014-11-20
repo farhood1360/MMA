@@ -4,4 +4,4 @@
 .DS_Store
 *.txt
 !README.md
-crossdomian.xml
+crossdomain.xml
