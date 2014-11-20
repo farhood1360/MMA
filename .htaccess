@@ -1,0 +1,9 @@
+phpcs.standard = WordPress
+phpcs.tabWidth = 4
+phpcs.encoding = utf-8
+
+ftp.host        = godaddy.com
+ftp.port        = 21
+ftp.username    = username
+ftp.password    = password
+ftp.baseurl     = http://docs.godday.com/
